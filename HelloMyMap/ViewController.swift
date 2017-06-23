@@ -96,6 +96,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
     
+    func buttonTapped(sender: Any) {
+        let alert = UIAlertController(title: "標題", message: "按鈕被按下了.", preferredStyle: .actionSheet)
+        let ok = UIAlertAction(title: "確認", style: .default) { (action) in
+            // ...
+        }
+        let cancel = UIAlertAction(title: "取消", style: .destructive) { (action) in
+            // ...
+        }
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // MKMapViewDelegate Delegate
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
@@ -113,8 +126,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         result?.canShowCallout = true
         //result?.animatesDrop = true
         //result?.pinTintColor = UIColor.green
-      //  let image = #imageLiteral(resourceName: "PointRed")
-        result?.image = UIImage(imageLiteralResourceName: "PointRed")
+        let image = #imageLiteral(resourceName: "PointRed")
+        result?.image = image
+        result?.leftCalloutAccessoryView = UIImageView(image: image)
+        let button = UIButton(type: .detailDisclosure)
+        button.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
+        result?.rightCalloutAccessoryView = button
         return result
     }
 }
