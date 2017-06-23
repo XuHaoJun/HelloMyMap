@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HelloMyMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,8 +20,49 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKm-6V-QhF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hiz-7f-yIl">
+                                <rect key="frame" x="70" y="20" width="235" height="29"/>
+                                <segments>
+                                    <segment title="標準"/>
+                                    <segment title="衛星"/>
+                                    <segment title="混合"/>
+                                    <segment title="Flyover"/>
+                                </segments>
+                                <connections>
+                                    <action selector="mapTypeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="uKC-NY-vn0"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="exX-rK-HQl">
+                                <rect key="frame" x="65" y="56" width="245" height="29"/>
+                                <segments>
+                                    <segment title="無"/>
+                                    <segment title="追蹤"/>
+                                    <segment title="追蹤＆方向"/>
+                                </segments>
+                                <connections>
+                                    <action selector="userTrackingModeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="9Fk-hv-wTu"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vKm-6V-QhF" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="CVM-zG-h3P"/>
+                            <constraint firstItem="exX-rK-HQl" firstAttribute="top" secondItem="hiz-7f-yIl" secondAttribute="bottom" constant="8" id="QMK-3E-D27"/>
+                            <constraint firstItem="vKm-6V-QhF" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="QOU-Wf-6Va"/>
+                            <constraint firstItem="hiz-7f-yIl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ZPa-La-fmR"/>
+                            <constraint firstItem="vKm-6V-QhF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cee-v4-ez5"/>
+                            <constraint firstItem="hiz-7f-yIl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qsz-Nf-5Fl"/>
+                            <constraint firstItem="exX-rK-HQl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zR8-xa-Ybt"/>
+                            <constraint firstAttribute="trailing" secondItem="vKm-6V-QhF" secondAttribute="trailing" id="zrp-9u-6Xb"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainMapView" destination="vKm-6V-QhF" id="S2Q-5r-qlJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
